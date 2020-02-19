@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.WriteActivity.ViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="324.8dp"
+            android:layout_marginBottom="7dp"
+            android:scaleType="centerCrop"
+            bind:loadImage="@{viewModel.mAttachModel.uri}"
+            tools:background="#ff0000" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mPosition)}"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ico_picture_remove" />
+    </RelativeLayout>
+</layout>

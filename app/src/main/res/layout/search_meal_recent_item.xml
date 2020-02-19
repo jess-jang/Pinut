@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.SearchMealActivity.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ico_recent_search" />
+
+            <TextView
+                android:id="@+id/tv_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mRecentModel.search)}"
+                android:text="@{viewModel.mRecentModel.search}"
+                android:textColor="#686868"
+                android:textSize="16sp"
+                tools:text="갈비찜" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp "
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mPosition)}"
+                android:src="@drawable/ico_remove" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center_vertical"
+                android:textColor="#686868"
+                android:textSize="16sp"
+                bind:convertFormat='@{"MM.dd"}'
+                bind:date="@{viewModel.mRecentModel.time}"
+                tools:text="12.22" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

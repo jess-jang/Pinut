@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.SchoolChangeActivity.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mModel)}"
+            android:orientation="horizontal"
+            android:paddingBottom="16.7dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="13.3dp"
+            android:paddingTop="17.3dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text='@{viewModel.mModel.insttNm ?? ""}'
+                    android:textColor="#313131"
+                    android:textSize="16sp"
+                    bind:accentSearch='@{viewModel.mSearchText}'
+                    bind:accentText='@{viewModel.mModel.insttNm ?? ""}'
+                    tools:text="염광중학교" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="@{viewModel.mModel.adres}"
+                    android:textColor="#797979"
+                    android:textSize="14sp"
+                    tools:text="서울특별시 노원구 월계로 45가길 9" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ico_school_change_choose" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+    </LinearLayout>
+
+</layout>

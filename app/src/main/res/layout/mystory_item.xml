@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.MyStoryActivity.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_mystory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mModel)}"
+            android:orientation="horizontal"
+            android:paddingBottom="18.5dp"
+            android:paddingLeft="13.5dp"
+            android:paddingRight="8dp"
+            android:paddingTop="13.5dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    bind:loadImage="@{viewModel.mModel.prvtIcon}"
+                    tools:src="@drawable/ico_notification_comment" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13.5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.mModel.prvtText}"
+                        android:textColor="#b3b3b3"
+                        android:textSize="13.5sp"
+                        tools:text="새로운 댓글이 등록되었습니다." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13.5dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{viewModel.mModel.tit}"
+                        android:textColor="#313131"
+                        android:textSize="15sp"
+                        tools:text="나 급식왕 왜 지금 알았냐" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="@{viewModel.mModel.timeAgo}"
+                            android:textColor="#b3b3b3"
+                            android:textSize="12sp"
+                            tools:text="1분" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+    </LinearLayout>
+</layout>

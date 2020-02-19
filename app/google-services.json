@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "222713631740",
+    "firebase_url": "https://schoolmeals-1cd8c.firebaseio.com",
+    "project_id": "schoolmeals-1cd8c",
+    "storage_bucket": "schoolmeals-1cd8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222713631740:android:bbb6b8bdf1da6d36",
+        "android_client_info": {
+          "package_name": "com.mindlinksw.schoolmeals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222713631740-kpqdenmptf5dbtvsr84846qjk4abphvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mindlinksw.schoolmeals",
+            "certificate_hash": "1ccaf11c26a7fac5bb0be011afa74d928d0e8845"
+          }
+        },
+        {
+          "client_id": "222713631740-71bkdjp28vr3cnfvkdr61mp84jvetp8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMsL_2rvMeeU5rryHaDe5LLcqfuok0GoY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222713631740-638uqub0f2jsq49dig1i1f0a2fghk658.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

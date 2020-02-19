@@ -1,0 +1,192 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android' // plugin 필수
+apply plugin: 'kotlin-kapt' // user data binding
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
+
+ext {
+    appName = "피넛"
+}
+
+android {
+
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.mindlinksw.schoolmeals"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.1.11"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "97c215c8-170c-493f-b81f-bc209e354a73"]
+    }
+
+    kapt {
+        mapDiagnosticLocations = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "Xg"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    configurations {
+        cleanedAnnotations
+        compile.exclude group: 'org.jetbrains', module: 'annotations'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("src/sign/MindLinkSw.jks")
+            storePassword 'mindlinksw'
+            keyAlias 'mlindlinksw'
+            keyPassword 'mindlinksw'
+        }
+    }
+
+    buildTypes {
+
+        debug {
+
+        }
+
+        release {
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions 'store'
+    productFlavors {
+
+        dev {
+            // applicationIdSuffix ".dev" // 패키지 명 변경
+            manifestPlaceholders = [appName: "${appName}_dev"]
+            versionCode new Date().format('yyMMddHHmm').toInteger()
+            dimension 'store'
+        }
+
+        product {
+            manifestPlaceholders = [appName: "${appName}"]
+            dimension 'store'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = 'school_meals'
+            def buildType = buildType.name // debug, release
+            def date = new Date().format('yyMMddHHmm')
+            def apkName = appName + '_' + buildType + '_' + date + '.apk'
+
+            // apk 추출
+            outputFileName = apkName
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/YouTubeAndroidPlayerApi-1.2.2.jar') // youtube player
+    implementation 'org.jetbrains:annotations-java5:15.0' // multi dex
+    implementation 'commons-codec:commons-codec:1.10'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version" // kotlin
+    implementation 'com.loopj.android:android-async-http:1.4.9' // loopj
+    implementation 'com.pixplicity.htmlcompat:library:1.1.1' // html
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3' // photo view
+    implementation 'com.github.timrijckaert:SnappingRecyclerView:v1.0' // snap list
+
+}
+
+// android x
+// https://developer.android.com/jetpack/androidx/migrate
+dependencies {
+//    kapt 'androidx.databinding:databinding-compiler:3.5.0'
+    implementation 'androidx.multidex:multidex:2.0.1' // multi dex
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3' // constraint
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+}
+
+// google
+// https://developers.google.com/android/guides/setup
+dependencies {
+    implementation "com.google.android.gms:play-services-base:17.0.0"
+    implementation "com.google.android.gms:play-services-auth:17.0.0"
+    implementation "com.google.android.gms:play-services-plus:17.0.0"
+    implementation 'com.google.android.material:material:1.0.0'
+}
+
+// firebase
+// https://firebase.google.com/support/release-notes/android
+dependencies {
+    implementation "com.google.firebase:firebase-core:17.1.0"
+    implementation "com.google.firebase:firebase-messaging:20.0.0"
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') { // fabric
+        transitive = true
+    }
+}
+
+// ads
+dependencies {
+    implementation files('libs/adlibr.5.1.0.0.jar')
+}
+
+// app center
+dependencies {
+    def appCenter = '2.3.0'
+    implementation "com.microsoft.appcenter:appcenter-analytics:$appCenter"
+    implementation "com.microsoft.appcenter:appcenter-crashes:$appCenter"
+    implementation "com.microsoft.appcenter:appcenter-distribute:$appCenter"
+    implementation "net.hockeyapp.android:HockeySDK:5.2.0" // hockeyapp
+}
+
+// squareup
+dependencies {
+    def retrofit = '2.4.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit" // GSON
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit" // scalars
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+}
+
+// reactivex
+dependencies {
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+}
+
+// social
+dependencies {
+    implementation 'com.kakao.sdk:usermgmt:1.21.1' // kakao
+    implementation 'com.kakao.sdk:kakaolink:1.15.1' // kakao
+    implementation 'com.facebook.android:facebook-login:5.4.0' // facebook
+    implementation(name: 'naveridlogin_android_sdk_4.2.0', ext: 'aar') // naver
+}
+
+// glide
+dependencies {
+    def glide = '4.9.0'
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+}
+
+apply plugin: 'com.google.gms.google-services'

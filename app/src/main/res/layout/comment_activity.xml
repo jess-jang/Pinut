@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.CommentActivity.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <!-- header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="13.5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:src="@drawable/ico_header_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text="@string/comment_title"
+                android:textColor="#313131"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            bind:refreshColor="@{@color/colorAccent}">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="15dp"
+                        android:visibility="@{viewModel.mIsDisable ? View.GONE : View.VISIBLE}">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/border_user_thumbnail"
+                            bind:loadImageCircle='@{viewModel.mModel.levelIcon ?? ""}' />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:text="@{@string/mypage_level(viewModel.mModel.userLevel)}"
+                                    android:textColor="#313131"
+                                    android:textSize="13.5sp"
+                                    tools:text="Lv.1" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="4dp"
+                                    android:text='@{viewModel.mModel.nckNm ?? ""}'
+                                    android:textColor="#9b9b9b"
+                                    android:textSize="13.5sp"
+                                    tools:text="아이디" />
+
+                                <!-- 작성자 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:background="@{viewModel.mIsWriter ? @color/board_writer : @color/color_white}"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="3dp"
+                                    android:paddingRight="3dp"
+                                    android:paddingTop="2dp"
+                                    android:text="@string/comment_me"
+                                    android:textColor="#ffffff"
+                                    android:textSize="12sp"
+                                    android:visibility="@{viewModel.mIsWriter ? View.VISIBLE : View.GONE}" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text='@{viewModel.mModel.content ?? ""}'
+                                android:textColor="#313131"
+                                android:textSize="15sp"
+                                tools:text="댓글댓글" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text='@{viewModel.mModel.timeAgo ?? ""}'
+                                android:textColor="#313131"
+                                android:textSize="12sp"
+                                tools:text="1분" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_comment_like"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mPosition, viewModel.mModel)}"
+                            android:orientation="horizontal"
+                            android:paddingRight="1.5dp">
+
+                            <CheckBox
+                                android:id="@+id/cb_like"
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/checkbox_comment_like"
+                                android:button="@null"
+                                android:checked='@{viewModel.mIsComment}'
+                                android:clickable="false" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{String.valueOf(viewModel.mCommentCnt)}"
+                                android:textColor="#b3b3b3"
+                                android:textSize="14sp"
+                                tools:text="1" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_comment_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mPosition, viewModel.mModel)}"
+                            android:paddingLeft="1.5dp"
+                            android:visibility="@{viewModel.mIsSelf ? View.VISIBLE : View.GONE}"
+                            app:srcCompat="@drawable/ico_comment_more"
+                            tools:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.mIsDisable ? View.VISIBLE : View.GONE}">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#d8d8d8" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fafafa"
+                            android:gravity="center"
+                            android:padding="13.3dp"
+                            android:text='@{viewModel.mModel.content ?? ""}'
+                            android:textColor="#c3c3c3"
+                            android:textSize="15sp"
+                            tools:text="삭제된 댓글입니다." />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#d8d8d8" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fafafa"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        bind:isItemAnimator="@{false}" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- 댓글 작성 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 광고 -->
+            <RelativeLayout
+                android:id="@+id/rl_ads"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <com.mocoplex.adlib.AdlibAdViewContainer
+                    android:id="@+id/ads"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#d8d8d8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/detail_comment_hint"
+                    android:maxLength="200"
+                    android:maxLines="3"
+                    android:paddingBottom="20.3dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="20.3dp"
+                    android:textColor="#313131"
+                    android:textColorHint="#b3b3b3"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.mIsWrite ? View.GONE : View.VISIBLE}">
+
+                    <TextView
+                        android:id="@+id/tv_modify_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:onClick="@{(v) -> viewModel.onClick(v)}"
+                        android:padding="10dp"
+                        android:text="@string/detail_comment_modify_cancel"
+                        android:textColor="#b3b3b3"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_modify_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="@{viewModel.mIsLoading ? false : true}"
+                        android:onClick="@{(v) -> viewModel.onClick(v)}"
+                        android:padding="10dp"
+                        android:text="@string/detail_comment_modify_submit"
+                        android:textColor="#b3b3b3"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_comment_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="@{viewModel.mIsLoading ? false : true}"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}"
+                    android:padding="10dp"
+                    android:text="@string/detail_comment_submit"
+                    android:textColor="#b3b3b3"
+                    android:textSize="15sp"
+                    android:visibility="@{viewModel.mIsWrite ? View.VISIBLE : View.GONE}" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

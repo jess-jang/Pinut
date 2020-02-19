@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#efa507</color>
+    <color name="ic_launcher_background">#F6CB49</color>
+
+    <color name="color_white">#ffffff</color>
+
+    <color name="selector_black">#1c000000</color>
+    <color name="selector_white">#4dffffff</color>
+
+    <color name="bottom_black">#515151</color>
+
+    <color name="common_black">#313131</color>
+    <color name="enable_color">#ffce01</color>
+    <color name="disable_color">#f6f6f6</color>
+    <color name="disable_text_color">#929292</color>
+
+    <color name="board_writer">#ffba00</color>
+
+    <color name="detail_sort_disable">#b3b3b3</color>
+    <color name="search_text_accent">#efa507</color>
+
+    <color name="school_choose_skip">#cfcfcf</color>
+    <color name="school_choose_skip_text">#929292</color>
+    <color name="school_choose_enable">#f6f6f6</color>
+
+    <color name="school_change_enable">#f6f6f6</color>
+    <color name="school_change__accent">#efa507</color>
+
+    <color name="login_disable_color">#f6f6f6</color>
+    <color name="login_skip_color">#929292</color>
+
+    <color name="nickname_count">#ffba00</color>
+    <color name="nickname_red">#e94436</color>
+
+
+</resources>

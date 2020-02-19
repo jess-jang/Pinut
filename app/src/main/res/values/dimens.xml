@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- board -->
+    <dimen name="board_thumbnail">79dp</dimen>
+
+    <!-- tabbar -->
+    <dimen name="tabbar_default">50dp</dimen>
+    <dimen name="tabbar_icon">25dp</dimen>
+
+    <!-- banner -->
+    <dimen name="banner_dot">8.5dp</dimen>
+    <dimen name="banner_dot_margin">8dp</dimen>
+
+    <!-- widger -->
+    <dimen name="widget_margin">8dp</dimen>
+
+
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.provider.MediaStore.Files.FileColumns" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.adapter.GalleryAdapter.ViewModel" />
+
+    </data>
+
+
+    <com.mindlinksw.schoolmeals.view.custom.SquareLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/image_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mModel, viewModel.mPosition)}">
+
+            <!-- image -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                bind:loadImage="@{viewModel.mModel.uri}" />
+
+            <!-- 순서 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:background="#000000"
+                android:visibility="@{viewModel.mModel.isChecked ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="9dp"
+                    android:gravity="center"
+                    android:shadowColor="#4c000000"
+                    android:shadowDx="5.0"
+                    android:shadowDy="5.0"
+                    android:shadowRadius="5.0"
+                    android:text="@{String.valueOf(viewModel.mModel.number)}"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    tools:text="1" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.mindlinksw.schoolmeals.view.custom.SquareLayout>
+</layout>

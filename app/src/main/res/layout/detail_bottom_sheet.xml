@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.bottomsheet.DetailBottomSheet.ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_modify"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="?attr/selectableItemBackground"
+
+            android:gravity="center"
+            android:onClick="@{(v) -> viewModel.onClick(v)}"
+            android:text="@string/detail_bottom_modify"
+            android:textColor="#005de3"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{(v) -> viewModel.onClick(v)}"
+            android:text="@string/detail_bottom_delete"
+            android:textColor="#c90000"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+
+        <TextView
+            android:id="@+id/tv_dismiss"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{(v) -> viewModel.onClick(v)}"
+            android:text="@string/detail_bottom_dismiss"
+            android:textColor="#515151"
+            android:textSize="18sp" />
+    </LinearLayout>
+</layout>

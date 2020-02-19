@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.NickNameActivity.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <!-- header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="13.5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:src="@drawable/ico_header_back" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+
+                android:gravity="center"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text="@string/nickname_title"
+                android:textColor="#313131"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="62dp"
+                    android:background="@null"
+
+                    android:gravity="center"
+                    android:hint="@string/nickname_hint"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onTextChanged(text, start, before, count)}"
+                    android:padding="22dp"
+                    android:singleLine="true"
+                    android:text="@{viewModel.mModel.nckNm}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginLeft="13.8dp"
+                    android:layout_marginRight="13.8dp"
+                    android:background="#e6e6e6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:padding="18dp"
+                    android:text='@{viewModel.mMessage ?? ""}'
+                    android:textColor="@{viewModel.mMessageColor}"
+                    android:textSize="16sp"
+                    tools:text="중복된 닉네임입니다." />
+
+                <!-- info -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="25.8dp"
+                    android:layout_marginRight="25.8dp"
+                    android:layout_marginTop="98dp"
+
+                    android:gravity="center"
+                    android:text='@{viewModel.mInfo ?? @string/nickname_info}'
+                    android:textColor="#c8c8c8"
+                    android:textSize="14sp"
+                    tools:text="@string/nickname_info" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@{viewModel.mIsSubmit ? @color/enable_color : @color/disable_color}"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#cfcfcf" />
+
+            <TextView
+                android:id="@+id/tv_submit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:enabled="@{viewModel.mIsSubmit ? true : false}"
+
+                android:gravity="center"
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:text="@string/nickname_submit"
+                android:textColor="@{viewModel.mIsSubmit ? @color/color_white : @color/disable_text_color}"
+                android:textSize="19sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

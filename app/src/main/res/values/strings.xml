@@ -1,0 +1,293 @@
+<resources>
+
+    <string name="app_name">피넛</string>
+    <string name="aes256_key">mindlinksw_encryption_20181126</string>
+    <string name="hockey_app_id">97c215c8-170c-493f-b81f-bc209e354a73</string>
+    <string name="google_key">AIzaSyCMsL_2rvMeeU5rryHaDe5LLcqfuok0GoY</string>
+    <string name="com.crashlytics.useFirebaseAppId">true</string>
+
+    <!-- naver -->
+    <string name="naver_client_id">qzONeYwYpHrMRkn8v6Ur</string>
+    <string name="naver_client_secret">JyGPiQ4WpF</string>
+
+    <!-- kakao -->
+    <string name="kakao_app_key">e866cf21528aaf5f4f76d85878913d60</string>
+    <string name="kakao_secret_key"> 9CGwXBSBbQOR0S7KzFrBMTF0wmiLVDVX</string>
+    <string name="kakao_scheme">kakaoe866cf21528aaf5f4f76d85878913d60</string>
+    <string name="kakaolink_host">kakaolink</string>
+
+    <!-- faecebook -->
+    <string name="facebook_app_id">795618380769611</string>
+    <string name="fb_login_protocol_scheme">fb795618380769611</string>
+    <!-- google -->
+    <string name="google_id_token">222713631740-71bkdjp28vr3cnfvkdr61mp84jvetp8t.apps.googleusercontent.com</string>
+
+    <!-- snack -->
+    <string name="snack_exit">뒤로가기를 한 번 더 누르면 앱이 종료됩니다.</string>
+    <string name="snack_need_login">로그인이 필요합니다.</string>
+    <string name="snack_login_move">로그인페이지로 이동하기</string>
+    <string name="snack_login_action">로그인</string>
+
+    <!-- alert -->
+    <string name="alert_confirm">확인</string>
+    <string name="alert_yes">예</string>
+    <string name="alert_no">아니오</string>
+
+    <!-- format -->
+    <string name="format_date_reg">yyyy-MM-dd HH:mm:DD</string>
+    <string name="format_date_convert">yyyy.MM.dd</string>
+
+    <!-- intro -->
+    <string name="intro_update_force">최신 버전으로 업데이트 후 앱을 사용하실 수 있습니다.</string>
+    <string name="intro_update_recommend">최신 버전으로 업데이트 후 사용하시겠습니까?</string>
+    <string name="intro_update_force_yes">업데이트</string>
+    <string name="intro_update_force_no">앱 종료</string>
+    <string name="intro_update_recommend_yes">업데이트</string>
+    <string name="intro_update_recommend_no">나중에</string>
+    <string name="intro_network">연결된 네트워크가 없습니다.\n네트워크를 확인하여주시기 바랍니다.</string>
+
+    <!-- login -->
+    <string name="login_naver">네이버로 피넛 로그인</string>
+    <string name="login_facebook">페이스북으로 피넛 로그인</string>
+    <string name="login_kakao">카카오로 피넛 로그인</string>
+    <string name="login_google">구글로 피넛 로그인</string>
+    <string name="login_fail">로그인을 실패하였습니다.</string>
+    <string name="login_join_fail">회원가입을 실패하였습니다.</string>
+
+    <!-- main -->
+    <string name="main_meals_choose_school">학교를 선택해주세요!</string>
+    <string name="main_ad_more">자세히보기</string>
+    <string name="main_ad_sponsored">sponsored</string>
+
+    <!-- ad -->
+    <string name="ad_info">AD</string>
+
+    <!-- common search -->
+    <string name="common_search_cancel">취소</string>
+
+    <!-- board -->
+    <string name="board_like">좋아요</string>
+    <string name="board_book_mark">북마크</string>
+    <string name="board_thumbnail">%d</string>
+
+    <!-- board detail -->
+    <string name="detail_title">게시글</string>
+    <string name="detail_prev">이전</string>
+    <string name="detail_next">다음</string>
+    <string name="detail_like">좋아요</string>
+    <string name="detail_view_count">조회수 %d회</string>
+    <string name="detail_like_count">%d개</string>
+    <string name="detail_comment">댓글</string>
+    <string name="detail_comment_count">%s개</string>
+    <string name="detail_sort_like">좋아요순</string>
+    <string name="detail_sort_new">최신순</string>
+    <string name="detail_read_fail">게시글을 읽을 수 없습니다.</string>
+    <string name="detail_comment_hint">소통하는 급식러, 넘나 멋진것</string>
+    <string name="detail_comment_submit">작성</string>
+    <string name="detail_comment_submit_fail">댓글 등록을 실패하였습니다.</string>
+    <string name="detail_comment_replay">댓글달기</string>
+    <string name="detail_comment_empty">댓글을 써주세요.</string>
+    <string name="detail_comment_more">댓글 %d개 더보기</string>
+    <string name="detail_bottom_modify">수정</string>
+    <string name="detail_bottom_delete">삭제</string>
+    <string name="detail_bottom_dismiss">취소</string>
+    <string name="detail_delete_confirm">게시글을 삭제하시겠습니까?</string>
+    <string name="detail_delete_comment_confirm">댓글을 삭제하시겠습니까?</string>
+    <string name="detail_comment_modify_cancel">취소</string>
+    <string name="detail_comment_modify_submit">수정</string>
+    <string name="detail_delete">게시글이 삭제됐습니다.</string>
+
+    <!-- comment detail -->
+    <string name="comment_title">댓글</string>
+    <string name="comment_me">작성자</string>
+    <string name="comment_read_fail">댓글을 읽을 수 없습니다.</string>
+
+    <!-- school choose -->
+    <string name="school_choose_step2_title">학년선택</string>
+    <string name="school_choose_step2_grade">%d학년</string>
+    <string name="school_finish_confirm">학교선택을 취소하시겠습니까?</string>
+    <string name="school_need_step1">학년을 선택하여 주시기 바랍니다.</string>
+    <string name="school_success">학교등록을 완료하였습니다.</string>
+    <string name="school_submit">완료</string>
+
+    <!-- school change -->
+    <string name="school_change_title">학교・학년변경</string>
+    <string name="school_change_grade">%d학년</string>
+    <string name="school_change_submit">변경</string>
+    <string name="school_change_success">학교・학년을 변경하였습니다.</string>
+
+    <string name="meal_empty">급식 정보가 없습니다.</string>
+
+    <!-- meal search -->
+    <string name="meal_search_recent">최근 검색어</string>
+    <string name="meal_search_clear">전체삭제</string>
+    <string name="meal_search_dday">d-%d</string>
+    <string name="meal_search_convert">MM월dd일 (E)</string>
+    <string name="meal_search_result">식단 검색 결과</string>
+    <string name="meal_search_result_empty">검색결과가 없습니다.</string>
+
+    <!-- weekly dateMeals -->
+    <string name="weekly_meals_title">주간식단</string>
+
+    <!-- date meal -->
+    <string name="date_meal_kcal">%skcal</string>
+    <string name="date_meal_date">MM.dd(E)</string>
+    <string name="date_meal_plus">+%d</string>
+
+    <!-- write -->
+    <string name="write_header_title">작성하기</string>
+    <string name="modify_header_title">수정하기</string>
+    <string name="write_submit">등록</string>
+    <string name="write_modify">수정</string>
+    <string name="write_fail">글 등록을 실패하였습니다.</string>
+    <string name="write_title">제목</string>
+    <string name="write_content">무슨 이야기를 나누고 싶으세요?</string>
+
+    <string name="write_max_picture">사진은 %d장까지 가능합니다.</string>
+    <string name="write_picture_permission">권한을 허용해야 사용가능합니다.</string>
+    <string name="write_empty">제목과 내용을 써주세요.</string>
+    <string name="write_empty_title">제목을 써주세요.</string>
+    <string name="write_modify_fail">글 등록을 실패하였습니다.</string>
+    <string name="write_image_delete_confirm">사진을 삭제하시겠습니까?</string>
+    <string name="write_close_confirm">뒤로가면 작성 중인 글은 삭제됩니다.</string>
+
+    <!-- report -->
+    <string name="report_title">신고하기</string>
+    <string name="report_header_action">신고</string>
+    <string name="report_writer">작성자</string>
+    <string name="report_subject">제목</string>
+    <string name="report_reason">신고사유</string>
+    <string name="report_reason_hint">신고 사유 설명이 필요하신 경우 작성해주세요.</string>
+
+    <!-- terms -->
+    <string name="terms_title">약관동의</string>
+    <string name="terms_all_agree">이용 약관에 모두 동의 합니다.</string>
+    <string name="terms_private_agree">급식왕 개인정보처리방침(필수)</string>
+    <string name="terms_use_agree">급식왕 이용약관(필수)</string>
+    <string name="terms_push_agree">다양한 정보, 혜택 알림 동의(선택)</string>
+    <string name="terms_join">가입완료</string>
+    <string name="terms_term">이용약관</string>
+    <string name="terms_private">개인정보처리방침</string>
+
+    <!-- notification -->
+    <string name="notification_title">알림</string>
+    <string name="notification_all_delete">전체삭제</string>
+    <string name="notification_empty">알림이 없습니다.</string>
+    <string name="notification_limit">최근 15일 이내 내역만 확인하실 수 있습니다.</string>
+    <string name="notification_all_delete_confirm">알림내역을 모두 삭제하시겠습니까?</string>
+    <string name="notification_delete_confirm">알림내역을 삭제하시겠습니까?</string>
+    <string name="notification_group_name">일반</string>
+    <string name="notification_channel_name">모든 알림</string>
+    <string name="notification_default_ticker">알림이 도착했습니다.</string>
+    <string name="notification_default_title">알림이 도착했습니다.</string>
+    <string name="notification_default_content">알림 내용을 확인해주세요.</string>
+
+    <!-- point -->
+    <string name="point_title">%d 알</string>
+    <string name="point_item">%s%d알</string>
+    <string name="point_empty">알 내역이 없습니다.</string>
+
+    <!-- mystory -->
+    <string name="mystory_title">내글목록</string>
+    <string name="mystory_empty">내글이 없습니다.</string>
+
+    <!-- bookmark -->
+    <string name="bookmark_title">북마크</string>
+    <string name="bookmark_all_delete">전체삭제</string>
+    <string name="bookmark_empty">북마크가 없습니다.</string>
+    <string name="bookmark_delete_confirm">북마크를 삭제하시겠습니까?</string>
+    <string name="bookmark_all_delete_confirm">북마크를 모두 삭제하시겠습니까?</string>
+
+    <!-- like -->
+    <string name="like_delete_fail">북마크를 삭제하는데 실패하였습니다.</string>
+
+    <!-- mypage -->
+    <string name="mypage_title">마이페이지</string>
+    <string name="mypage_setting">설정</string>
+    <string name="mypage_school">학교・학년 변경</string>
+    <string name="mypage_bookmark">북마크 목록</string>
+    <string name="mypage_nickname">닉네임 변경</string>
+    <string name="mypage_my_story">내글목록</string>
+    <string name="mypage_allergy">알레르기 선택</string>
+    <string name="mypage_point">포인트 적립내역</string>
+    <string name="mypage_notice">공지사항・이벤트</string>
+    <string name="mypage_cs">문의・버그사항</string>
+    <string name="mypage_version">v%s 최신버전 입니다</string>
+    <string name="mypage_version_need">v%s 업데이트가 필요합니다</string>
+    <string name="mypage_point_count">%d알</string>
+    <string name="mypage_level">Lv.%d</string>
+    <string name="mypage_exp">경험치</string>
+    <string name="mypage_exp_point">%d/%d</string>
+    <string name="mypage_grade">%d학년</string>
+    <string name="mypage_grade_empty">학년을 선택해 주세요.</string>
+    <string name="mypage_school_empty">학교를 선택해 주세요.</string>
+    <string name="mypage_point_notice">스토어 업데이트를 준비중입니다.</string>
+
+    <!-- setting -->
+    <string name="setting_title">설정</string>
+    <string name="setting_notification">알림 설정</string>
+    <string name="setting_notification_my_story">댓글 알림</string>
+    <string name="setting_notification_marketing">마케팅 알림</string>
+    <string name="setting_info">정보</string>
+    <string name="setting_term">이용약관</string>
+    <string name="setting_private">개인정보 처리방침</string>
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_logout_alert">로그아웃하면 글쓰기, 댓글 쓰기가\n제한되며 알림을 받지 못합니다.\n계속 진행하시겠습니까?</string>
+
+    <!-- nickname -->
+    <string name="nickname_title">닉네임설정</string>
+    <string name="nickname_hint">닉네임을 입력하세요</string>
+    <string name="nickname_info">욕설, 19금, 유니코드를 사용한 닉네임은 사용불가하며 10자 내외로 작성해주세요.</string>
+    <string name="nickname_submit">완료</string>
+    <string name="nickname_submit_success">변경 하였습니다.</string>
+    <string name="nickname_count">%d회 남음</string>
+    <string name="nickname_max">닉네임 변경은 월 %d회 가능합니다.</string>
+
+    <!-- notice -->
+    <string name="notice_title">공지사항</string>
+
+    <!-- widget -->
+    <string name="widget_label">피넛</string>
+    <string name="widget_text">EXAMPLE</string>
+    <string name="widget_community">커뮤니티</string>
+    <string name="widget_video">꿀잼영상</string>
+    <string name="widget_empty_meal">급식 데이터 없음 문구 필요</string>
+    <string name="widget_empty_school">학교를 선택해주세요!</string>
+    <string name="widget_power_save">원활한 위젯 사용을 위해 절전 모드를 해제하여 주세요.</string>
+    <string name="widget_data_save">원활한 위젯 사용을 위해 데이터 절약 모드를 해제하여 주세요.</string>
+
+    <!-- allergy -->
+    <string name="allergy_title">알레르기 선택항목</string>
+    <string name="allergy_submit">저장</string>
+    <string name="allergy_submit_success">알레르기를 저장하였습니다.</string>
+
+    <!-- gallery -->
+    <string name="gallery_title">사진선택</string>
+    <string name="gallery_submit">완료</string>
+    <string name="gallery_cancel">취소</string>
+    <string name="gallery_max_count_image">최대 %d장까지 가능합니다.</string>
+    <string name="gallery_max_size_image">%dmb를 넘을 수 없습니다.</string>
+    <string name="gallery_max_size_height">높이가 %dpx을 넘을 수 없습니다. 길이를 조정해주세요.</string>
+
+    <!-- video -->
+    <string name="video_title">꿀잼영상</string>
+    <string name="video_bottom_popularity">인기순</string>
+    <string name="video_bottom_newest">최신순</string>
+
+    <!-- video detail -->
+    <string name="video_detail_title">꿀잼영상</string>
+
+    <!-- video write -->
+    <string name="video_write_content">Youtube URL을 입력하세요.</string>
+    <string name="video_write_title">제목을 입력해주세요.</string>
+    <string name="video_write_url_pattern">잘못된 URL입니다. Youtube URL을 확인해주세요.</string>
+    <string name="video_write_data_empty">Youtube 데이터를 가져올 수 없습니다.</string>
+    <string name="video_write_source_youtube">www.youtube.com</string>
+    <string name="video_guide_dont_show">다시보지않기</string>
+    <string name="video_guide_close">닫기</string>
+
+    <!-- welcome -->
+    <string name="welcome_today_dismiss">오늘 그만 보기</string>
+    <string name="welcome_close">닫기</string>
+
+</resources>

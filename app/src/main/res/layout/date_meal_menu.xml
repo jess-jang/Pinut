@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.viewholder.DateMealsViewHolder.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
+        android:visibility="@{viewModel.mMenuModel.menuNm != null ? View.VISIBLE : View.GONE}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lineSpacingExtra="8sp"
+            android:maxLines="1"
+            android:text="@{viewModel.mMenuModel.menuNm}"
+            android:textColor="#313131"
+            android:textSize="17sp"
+            tools:text="쇠고기버섯샤브샤브" />
+
+        <RelativeLayout
+            android:layout_width="10.5dp"
+            android:layout_height="6.5dp">
+
+            <View
+                android:layout_width="6.5dp"
+                android:layout_height="6.5dp"
+                android:background="@drawable/dot_meal_allergy"
+                android:visibility='@{"Y".equals(viewModel.mMenuModel.alrgyYn) ? View.VISIBLE : View.GONE}'
+                tools:visibility="visible" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

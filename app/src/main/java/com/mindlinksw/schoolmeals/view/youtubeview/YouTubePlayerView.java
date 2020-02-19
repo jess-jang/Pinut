@@ -1,0 +1,266 @@
+/*
+ * Apache License
+ * Version 2.0, January 2004
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+ *
+ * Copyright (c) 2018 Flipkart Internet Pvt. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+ * this file except in compliance with the License. You may obtain a copy of the
+ * License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed
+ * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+ */
+package com.mindlinksw.schoolmeals.view.youtubeview;
+
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.os.Build;
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import com.mindlinksw.schoolmeals.R;
+import com.mindlinksw.schoolmeals.utils.FragmentUtils;
+import com.mindlinksw.schoolmeals.utils.ObjectUtils;
+import com.mindlinksw.schoolmeals.view.youtubeview.fragment.YouTubeBaseFragment;
+import com.mindlinksw.schoolmeals.view.youtubeview.fragment.YouTubeFragment;
+import com.mindlinksw.schoolmeals.view.youtubeview.fragment.YouTubeWebViewFragment;
+import com.mindlinksw.schoolmeals.view.youtubeview.listener.YouTubeEventListener;
+import com.mindlinksw.schoolmeals.view.youtubeview.models.ImageLoader;
+import com.mindlinksw.schoolmeals.view.youtubeview.models.YouTubePlayerType;
+import com.mindlinksw.schoolmeals.view.youtubeview.util.$Precondition$Check;
+import com.mindlinksw.schoolmeals.view.youtubeview.util.ServiceUtil;
+
+public class YouTubePlayerView extends FrameLayout {
+
+    public static final String TAG = "YouTubeFragmentTAG";
+    private static final double ASPECT_RATIO = 0.5625; //aspect ratio of player 9:16(height/width)
+
+    protected ImageView playIcon;
+    @YouTubePlayerType
+    private int playerType;
+
+    private String videoId;
+    @Nullable
+    private YouTubeEventListener listener;
+    private Fragment fragment;
+
+    private String key;
+    private FrameLayout playerContainer;
+    private ImageView thumbnailImageView;
+    private String webViewUrl;
+    private ImageLoader imageLoader;
+    private String dataKey;
+
+    public YouTubeBaseFragment youtubePlayerFragment;
+
+    public YouTubePlayerView(Context context) {
+        super(context);
+        init(context);
+    }
+
+    public YouTubePlayerView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context);
+    }
+
+    public YouTubePlayerView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int newWidth;
+        int newHeight;
+        newWidth = getMeasuredWidth();
+        newHeight = (int) (newWidth * ASPECT_RATIO);
+        setMeasuredDimension(newWidth, newHeight);
+        if (playerContainer != null && playerContainer.getMeasuredHeight() != newHeight) {
+            ViewGroup.LayoutParams layoutParams = playerContainer.getLayoutParams();
+            layoutParams.height = newHeight;
+            playerContainer.setLayoutParams(layoutParams);
+
+            String url = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
+            if (null != imageLoader) {
+                imageLoader.loadImage(thumbnailImageView, url, getMeasuredHeight(), getMeasuredWidth());
+            }
+        }
+    }
+
+    @MainThread
+    public void initPlayer(@NonNull String apiKey, @NonNull String videoId, @Nullable String webViewUrl, @YouTubePlayerType int playerType,
+                           @NonNull Fragment fragment, String key, @NonNull ImageLoader imageLoader, @Nullable YouTubeEventListener listener) {
+        $Precondition$Check.checkArgument(!TextUtils.isEmpty(apiKey), "apiKey cannot be null");
+        $Precondition$Check.checkArgument(!TextUtils.isEmpty(videoId), "videoId cannot be null");
+        //noinspection ConstantConditions
+        $Precondition$Check.checkArgument(fragment != null, "Fragment cannot be null");
+        //noinspection ConstantConditions
+        $Precondition$Check.checkArgument(imageLoader != null, "ImageLoader cannot be null");
+
+        this.key = apiKey;
+        this.videoId = videoId;
+        this.webViewUrl = webViewUrl;
+        this.playerType = playerType;
+        this.listener = listener;
+        this.fragment = fragment;
+        this.imageLoader = imageLoader;
+        this.dataKey = key;
+    }
+
+    private void init(@NonNull Context context) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View itemView = inflater.inflate(R.layout.youtube_container, this, false);
+        this.addView(itemView);
+        playerContainer = itemView.findViewById(R.id.youtubeFragmentContainer);
+        playerContainer.setId(0);
+        thumbnailImageView = itemView.findViewById(R.id.video_thumbnail_image);
+        playIcon = itemView.findViewById(R.id.play_btn);
+
+        ProgressBar progressBar = itemView.findViewById(R.id.recycler_progressbar);
+        // For else case there is a layout defined for v21 and above
+        if (progressBar != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            int color;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                color = context.getResources().getColor(R.color.color_white, null);
+            } else {
+                color = context.getResources().getColor(R.color.color_white);
+            }
+            progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        }
+
+        setListeners();
+    }
+
+    private void setListeners() {
+        OnClickListener onClickListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleBindPlayer();
+            }
+        };
+
+        thumbnailImageView.setOnClickListener(onClickListener);
+        playIcon.setOnClickListener(onClickListener);
+
+    }
+
+    public void handleBindPlayer() {
+        switch (playerType) {
+            case YouTubePlayerType.WEB_VIEW:
+                attachPlayer(false);
+                break;
+            case YouTubePlayerType.STRICT_NATIVE:
+                bindPlayer(false);
+                break;
+            case YouTubePlayerType.AUTO:
+            case YouTubePlayerType.INVALID_VIEW:
+            default:
+                bindPlayer(true);
+                break;
+        }
+    }
+
+    private void bindPlayer(boolean auto) {
+        if (!ServiceUtil.isYouTubeServiceAvailable(getContext())) {
+            if (!auto && listener != null) {
+                listener.onNativeNotSupported();
+            } else {
+                attachPlayer(false);
+            }
+        } else {
+            attachPlayer(true);
+        }
+    }
+
+    private void attachPlayer(boolean isNative) {
+        if (playerContainer.getId() != R.id.youtubeFragmentContainer) {
+            YouTubeBaseFragment currentYouTubeFragment = removeCurrentYouTubeFragment();
+            playerContainer.setId(R.id.youtubeFragmentContainer);
+
+            if (isNative) {
+                /**
+                 * Native Youtube Fragment
+                 */
+                youtubePlayerFragment = YouTubeFragment.newInstance(key, videoId, dataKey);
+            } else {
+                YouTubeWebViewFragment webViewFragment = YouTubeWebViewFragment.newInstance(webViewUrl, videoId);
+                if (currentYouTubeFragment instanceof YouTubeWebViewFragment) {
+                    webViewFragment.setWebView(((YouTubeWebViewFragment) currentYouTubeFragment).removeWebView());
+                }
+                youtubePlayerFragment = webViewFragment;
+            }
+
+            youtubePlayerFragment.setYouTubeEventListener(listener);
+
+            // 중복체크
+            if (!ObjectUtils.isEmpty(FragmentUtils.getFragment(fragment.getChildFragmentManager(), fragment))) {
+                return;
+            }
+
+            this.fragment
+                    .getChildFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.youtubeFragmentContainer, (Fragment) youtubePlayerFragment, TAG)
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .commit();
+        }
+    }
+
+    private YouTubeBaseFragment removeCurrentYouTubeFragment() {
+        YouTubeBaseFragment youTubeBaseFragment = null;
+
+        try {
+
+            FragmentManager fragmentManager = fragment.getChildFragmentManager();
+            Fragment youTubeFragment = fragmentManager.findFragmentByTag(TAG);
+            if (youTubeFragment instanceof YouTubeBaseFragment) {
+
+                youTubeBaseFragment = (YouTubeBaseFragment) youTubeFragment;
+                View fragmentView = youTubeFragment.getView();
+                ViewParent parentView = null != fragmentView ? fragmentView.getParent() : null;
+                youTubeBaseFragment.release();
+                fragmentManager.beginTransaction().remove(youTubeFragment).commitAllowingStateLoss();
+                fragmentManager.executePendingTransactions();
+
+                if (parentView instanceof View && ((View) parentView).getId() == R.id.youtubeFragmentContainer) {
+                    ((View) parentView).setId(0);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return youTubeBaseFragment;
+    }
+
+    public void unbindPlayer() {
+        if (playerContainer.getId() == R.id.youtubeFragmentContainer) {
+            removeCurrentYouTubeFragment();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        unbindPlayer();
+        super.onDetachedFromWindow();
+    }
+}

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.activity.LoginActivity.LoginViewModel" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:alpha="1.0">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_login_logo" />
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="38dp"-->
+            <!--android:layout_marginRight="38dp"-->
+            <!--android:layout_marginTop="19.5dp"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="@string/login_title_1"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="21sp" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="@string/login_title_2"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="21sp" />-->
+            <!--</LinearLayout>-->
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="@string/login_title_3"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="21sp" />-->
+            <!--</LinearLayout>-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="57dp"
+            android:alpha="0.0"
+            android:orientation="vertical"
+            tools:alpha="1.0"
+            tools:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rl_naver"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:alpha="1.0"
+                android:background="@drawable/border_login_naver"
+                tools:alpha="1.0">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ico_login_naver" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+                    android:text="@string/login_naver"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/v_naver"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_rectangle_black"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_kakao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:alpha="1.0"
+                android:background="@drawable/border_login_kakao"
+                tools:alpha="1.0">
+
+                <com.kakao.usermgmt.LoginButton
+                    android:id="@+id/lb_kakao_login"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#ffe800"
+
+                    android:gravity="center"
+                    android:text="@string/login_kakao"
+                    android:textColor="#3a2020"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ico_login_kakao" />
+
+                <View
+                    android:id="@+id/v_kakao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_rectangle_black"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:alpha="1.0"
+                android:background="@drawable/border_login_facebook"
+                tools:alpha="1.0">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ico_login_facebook" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/login_facebook"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/v_facebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_rectangle_black"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_google"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:alpha="1.0"
+                android:background="@drawable/border_login_google"
+                tools:alpha="1.0">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    app:srcCompat="@drawable/ico_login_google" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/login_google"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/v_google"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_rectangle_black"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

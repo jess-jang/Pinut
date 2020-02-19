@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.fragment.SchoolChooseStep1Fragment.SchoolSearchViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <!-- 검색 바 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="9dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="39dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_school_search"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8.5dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8.5dp"
+                        app:srcCompat="@drawable/ico_search" />
+
+                    <EditText
+                        android:id="@+id/et_search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onTextChanged(text, start, before, count)}"
+                        android:textColor="#313131"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="14dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ico_remove" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.8dp"
+                    android:layout_marginRight="11dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> viewModel.onClick(v)}"
+                    android:text="@string/common_search_cancel"
+                    android:textColor="#313131"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#d8d8d8" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_school"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:addOnScrollListener="@{viewModel.mOnScrollListener}"
+            android:scrollbars="vertical"
+            bind:isItemAnimator="@{false}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@{viewModel.mIsSubmit ? @color/enable_color : @color/disable_color}"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.mIsConfirm ? View.VISIBLE : View.GONE}">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#cfcfcf" />
+
+            <TextView
+                android:id="@+id/tv_submit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:enabled="@{viewModel.mIsSubmit ? true : false}"
+                android:gravity="center"
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:text="@string/school_submit"
+                android:textColor="@{viewModel.mIsSubmit ? @color/color_white : @color/disable_text_color}"
+                android:textSize="19sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

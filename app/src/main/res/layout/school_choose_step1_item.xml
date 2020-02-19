@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.view.fragment.SchoolChooseStep1Fragment.SchoolSearchViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{viewModel.mModel.isChecked ? @color/school_choose_enable : @color/color_white}"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mPosition, viewModel.mModel)}"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#313131"
+                android:textSize="18sp"
+                bind:accentColor="@{@color/search_text_accent}"
+                bind:accentSearch='@{viewModel.mSearchText}'
+                bind:accentText='@{viewModel.mModel.insttNm ?? ""}'
+                tools:text="염광중학교" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{viewModel.mModel.adres}"
+                android:textColor="#313131"
+                android:textSize="14sp"
+                tools:text="서울특별시 노원구 월계로 45가길 9" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8" />
+    </LinearLayout>
+
+</layout>

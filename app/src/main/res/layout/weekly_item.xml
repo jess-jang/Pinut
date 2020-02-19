@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.adapter.WeeklyAdapter.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingBottom="17dp">
+
+            <ImageView
+                android:layout_width="19.5dp"
+                android:layout_height="19.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12.3dp"
+                bind:loadImage="@{viewModel.mMealIcon}"
+                tools:src="@drawable/ico_weekly_dinner" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="17dp">
+
+                <TextView
+                    android:id="@+id/tv_meal_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.5dp"
+
+                    android:text='@{viewModel.mMealType ?? ""}'
+                    android:textColor="#313131"
+                    android:textSize="16sp"
+                    tools:text="아침" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14.5dp"
+                    android:layout_marginRight="15dp"
+
+                    android:textColor="#313131"
+                    android:textSize="16sp"
+                    android:visibility="@{viewModel.mModel.content != null ? View.VISIBLE : View.GONE}"
+                    bind:htmlFormat='@{viewModel.mModel.content ?? ""}'
+                    tools:text="찰흑미밥찰흑찰흑밥찰흑찰흑밥찰흑찰흑밥찰흑찰흑밥찰흑찰흑밥찰흑찰흑미밥찰흑미밥" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:text="@string/meal_empty"
+                    android:textColor="#d8d8d8"
+                    android:textSize="16sp"
+                    android:visibility="@{viewModel.mModel.content == null ? View.VISIBLE : View.GONE}"
+                    tools:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="73dp"
+            android:background="#d8d8d8" />
+    </LinearLayout>
+
+</layout>

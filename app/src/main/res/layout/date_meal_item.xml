@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.viewholder.DateMealsViewHolder.ViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="17dp"
+        android:paddingLeft="11dp"
+        android:paddingTop="17dp">
+
+        <RelativeLayout
+            android:layout_width="192.5dp"
+            android:layout_height="match_parent"
+            android:background="@{viewModel.mPosition == 0 ? @drawable/border_date_meal_today : @drawable/border_date_meal_other}"
+            android:orientation="horizontal"
+            android:visibility="@{!viewModel.mModel.isLast ? View.VISIBLE : View.INVISIBLE}">
+
+            <View
+                android:layout_width="3.5dp"
+                android:layout_height="match_parent"
+                android:background="#ffc313"
+                android:visibility="@{viewModel.mPosition == 0 ? View.VISIBLE : View.INVISIBLE}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12.3dp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingTop="12.3dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#313131"
+                        android:textSize="16sp"
+                        bind:convertFormat='@{@string/date_meal_date}'
+                        bind:date="@{viewModel.mModel.date}"
+                        bind:originalFormat='@{"yyyy-MM-dd"}'
+                        tools:text="12.24(월)" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            bind:loadImage="@{viewModel.mMealIcon}"
+                            tools:src="@drawable/ico_weekly_dinner" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:textColor="#313131"
+                            android:textSize="15sp"
+                            bind:mealType="@{viewModel.mModel.mealType}"
+                            tools:text="아침" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{@string/date_meal_kcal(viewModel.mModel.kcal)}"
+                    android:textColor="#313131"
+                    android:textSize="14sp"
+                    android:visibility="@{viewModel.mModel.kcal != null ? View.VISIBLE : View.GONE}"
+                    tools:text="800kcal" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:minHeight="75dp"
+                    android:visibility='@{"N".equals(viewModel.mModel.nullYn) ? View.VISIBLE : View.GONE}'
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <!-- 급식 데이터 없음 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility='@{"Y".equals(viewModel.mModel.nullYn) ? View.VISIBLE : View.GONE}'>
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="27dp"
+                        android:src="@drawable/ico_meal_empty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+
+                        android:text="@string/meal_empty"
+                        android:textColor="#d8d8d8"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="15.5dp"
+                    android:layout_marginRight="14.5dp"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.mMenuCount &gt; 0 ? View.VISIBLE : View.INVISIBLE}">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center_horizontal"
+                        android:text="@{@string/date_meal_plus(viewModel.mMenuCount)}"
+                        android:textColor="#313131"
+                        android:textSize="16sp"
+                        tools:text="@string/date_meal_plus" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#dedede" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_meal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="@{(v) -> viewModel.onClick(v)}" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

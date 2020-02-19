@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mindlinksw.schoolmeals.adapter.DetailCommentAdapter.ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_comment_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:onClick="@{(v) -> viewModel.onClick(v, viewModel.mModel)}"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{@string/detail_comment_more(viewModel.mModel.replyCnt)}"
+            android:textColor="#494949"
+            android:textSize="15sp"
+            tools:text="댓글 1개 더보기" />
+    </LinearLayout>
+</layout>
